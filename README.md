@@ -6,3 +6,4 @@ The script will make host reboot and autologin in GUI with Remmina app window.
 Right click menu of the openbox is disabled.
 
 Little configuration of the SSH and basic iptables rules applied (can be changed in script).
+**Use Ctrl + Alt + F1 to exit Openbox and proceed to tty1**
