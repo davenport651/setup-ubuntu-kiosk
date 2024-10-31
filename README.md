@@ -9,3 +9,7 @@ Right click menu of the openbox was purposefully disabled.
 Little configuration of the SSH and basic iptables rules applied (can be changed in script).
 
 **Use Ctrl + Alt + F1 to exit Openbox and proceed to tty1**
+
+
+
+![image](https://github.com/user-attachments/assets/17712e9e-c20b-4b25-bf8d-803d6ed6cc2c)
