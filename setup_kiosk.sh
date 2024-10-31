@@ -921,10 +921,13 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server
 #       ForceCommand cvs server
 EOF
 
+Green='\033[1;32m'   
+NC='\033[0m'
+
 # Restarting the ssh daemon
 sudo systemctl restart ssh
 
-echo "SSH setup is done succesfully."
+echo -e "${Green}SSH setup is done succesfully.${NC}"
 
 # Adjusting iptables rules
 # Flush existing rules and set default policies to drop
@@ -953,15 +956,15 @@ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 sudo netfilter-persistent save
 
 # Echoing about success and reboot in 20 seconds
-echo "Iptables rules set successfully. Incoming traffic restricted to DNS, SSH; outgoing traffic is allowed."
-sleep 4
+echo -e "${Green}Iptables rules set successfully. Incoming traffic restricted to DNS, SSH; outgoing traffic is allowed.${NC}"
+sleep 5
 
 # Changing boot to splashcreen
-sudo sed -i -e '/GRUB_CMDLINE_LINUX_DEFAULT=/ s/= .*/="quiet splash"/' /etc/default/grub
+sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=".*"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
 sudo update-grub
-echo "Splash screen has been set successfully."
-sleep 4
+echo -e "${Green}Splash screen has been set successfully.${NC}"
+sleep 5
 
-echo -e "Kiosk setup is done succesfully."
-echo -e "\033[1mThe system will be rebooted in 20 seconds.\033[0m"
+echo -e "${Green}Kiosk setup is done succesfully.${NC}"
+echo -e "${Green}The system will be rebooted in 20 seconds.${NC}"
 sleep 20; reboot &
