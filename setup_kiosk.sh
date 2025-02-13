@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Steps to Install and Configure Ubuntu Server 24.04 as a Remmina RDP Client Kiosk:
+# Steps to Install and Configure Ubuntu Server 24.04 as a Java applet Kiosk:
 # 1. Install Ubuntu Server 24.04: Use the minimized installation setup and skip adding any additional Snap packages.
 # 2. Update and Upgrade Packages: Ensure all packages are up-to-date as desired.
 # 3. Set a Static IP Address: If you plan to access the server via SSH long-term, configure a static IP 
@@ -9,7 +9,7 @@
 # 5. Run the Setup Script: Grant execute permissions using "chmod +x setup_kiosk.sh", then run the script with "sudo".
 #
 # What the Script Configures:
-# - Kiosk User Setup: Creates a new user (kiosk-user) configured to auto-login and launch the Remmina application.
+# - Kiosk User Setup: Creates a new user (kiosk-user) configured to auto-login and launch the java application.
 # - SSH Settings: Adjusts LoginGraceTime, login attempts, and maximum concurrent sessions for SSH.
 # - IPTables Rules: Sets rules to allow outgoing traffic and DNS requests.
 #
@@ -52,7 +52,7 @@ sudo cat > /home/kiosk-user/.config/openbox/autostart<< EOF
 #!/bin/bash
 
 while true; do
-    remmina
+    /opt/SCADA/runtime/bin/java -j /opt/SCADA/app/SCADA.jar $@
 done
 EOF
 
@@ -188,7 +188,7 @@ sudo cat > /home/kiosk-user/.config/openbox/rc.xml<< EOF
 
        use obconf if you want to change these without having to log out
        and back in -->
-  <number>4</number>
+  <number>1</number>
   <firstdesk>1</firstdesk>
   <names>
     <!-- set names up here if you want to, like this:
